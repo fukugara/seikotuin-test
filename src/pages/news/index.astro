@@ -1,0 +1,45 @@
+---
+export const prerender = false;
+import Layout from '../../layouts/Layout.astro';
+
+// WordPressから全記事を取得
+const res = await fetch('https://seikotsuin.fukuhara.work/wp-json/wp/v2/posts?per_page=20');
+const posts = await res.json();
+---
+
+<Layout title="新着情報一覧">
+  <main class="l-main">
+    <div class="p-news-archive">
+      <h1>新着情報一覧</h1>
+      <ul class="p-news-list">
+        {posts.map((post) => (
+          <li class="p-news-item">
+            <time class="p-news-date">{post.date.split('T')[0]}</time>
+            <a href={`/news/${post.slug}`} class="p-news-link" set:html={post.title.rendered} />
+          </li>
+        ))}
+      </ul>
+      
+      <div class="p-news-footer">
+        <a href="/" class="c-button-back">← トップページに戻る</a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .p-news-archive { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+  h1 { margin-bottom: 30px; }
+  
+  .p-news-list { list-style: none; padding: 0; }
+  .p-news-item { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid #eee; }
+  .p-news-date { color: #888; flex-shrink: 0; }
+  .p-news-link { color: #333; text-decoration: none; font-weight: bold; }
+  .p-news-link:hover { text-decoration: underline; }
+
+  .p-news-footer { margin-top: 50px; text-align: center; }
+  .c-button-back { 
+    display: inline-block; padding: 12px 24px; 
+    background: #333; color: #fff; text-decoration: none; border-radius: 5px; 
+  }
+</style>

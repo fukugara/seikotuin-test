@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="プライバシーポリシー">
+  <div class="p-page-header">
+    <div class="p-page-header__inner">
+      <h1 class="p-page-header__title">プライバシーポリシー</h1>
+      <span class="p-page-header__en">PRIVACY POLICY</span>
+    </div>
+  </div>
+
+  <div class="l-privacy">
+    <div class="p-privacy-content">
+      <p class="p-privacy-content__lead">
+        〇〇整骨院（以下、「当院」）は、本ウェブサイト上で提供するサービス（以下、「本サービス」）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」）を定めます。
+      </p>
+
+      <section class="p-privacy-section">
+        <h2 class="p-privacy-section__title">1. 個人情報の定義</h2>
+        <p class="p-privacy-section__text">
+          「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる情報を指します。
+        </p>
+      </section>
+
+      <section class="p-privacy-section">
+        <h2 class="p-privacy-section__title">2. 個人情報の収集方法</h2>
+        <p class="p-privacy-section__text">
+          当院は、ユーザーが本サービスのお問い合わせフォームやご予約フォームを利用する際に、氏名、フリガナ、電話番号、メールアドレスなどの個人情報をお尋ねすることがあります。
+        </p>
+      </section>
+
+      <section class="p-privacy-section">
+        <h2 class="p-privacy-section__title">3. 個人情報を収集・利用する目的</h2>
+        <p class="p-privacy-section__text">当院が個人情報を収集・利用する目的は、以下のとおりです。</p>
+        <ul class="p-privacy-section__list">
+          <li>当院の施術サービスのご予約管理のため</li>
+          <li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li>
+          <li>その他、上記の利用目的に付随する目的のため</li>
+        </ul>
+      </section>
+
+      <section class="p-privacy-section">
+        <h2 class="p-privacy-section__title">4. 個人情報の第三者提供</h2>
+        <p class="p-privacy-section__text">
+          当院は、次に掲げる場合を除いて、あらかじめユーザーの同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合を除きます。
+        </p>
+        <ul class="p-privacy-section__list">
+          <li>法令に基づく場合</li>
+          <li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li>
+        </ul>
+      </section>
+
+      <section class="p-privacy-section">
+        <h2 class="p-privacy-section__title">5. お問い合わせ窓口</h2>
+        <p class="p-privacy-section__text">本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。</p>
+        <div class="p-privacy-box">
+          <p class="p-privacy-box__item"><strong>院名：</strong>〇〇整骨院</p>
+          <p class="p-privacy-box__item"><strong>住所：</strong>大阪府高槻市〇〇町1-2-3</p>
+          <p class="p-privacy-box__item"><strong>電話番号：</strong>072-XXX-XXXX</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .l-privacy {
+    padding-block: 60px;
+    background-color: #fff;
+  }
+
+  .p-privacy-content {
+    max-width: 800px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .p-privacy-content__lead {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 40px;
+  }
+
+  .p-privacy-section {
+    margin-bottom: 40px;
+  }
+
+  .p-privacy-section__title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    border-left: 4px solid var(--color-primary);
+    padding-left: 12px;
+    margin: 0 0 16px 0;
+  }
+
+  .p-privacy-section__text, .p-privacy-section__list {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+  }
+
+  .p-privacy-section__list {
+    padding-left: 20px;
+    margin-top: 8px;
+    
+    & li {
+      margin-bottom: 6px;
+    }
+  }
+
+  .p-privacy-box {
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+  }
+
+  .p-privacy-box__item {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .l-privacy { padding-block: 80px; }
+  }
+</style>

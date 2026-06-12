@@ -1,0 +1,249 @@
+---
+---
+
+<section class="p-access">
+  <div class="p-access__inner">
+
+    <div class="p-access__header">
+      <span class="p-access__label">ACCESS</span>
+      <h2 class="p-access__title">診療時間・アクセス</h2>
+    </div>
+
+    <div class="p-access__body">
+      <div class="p-access__grid">
+        
+        <div class="p-access__info">
+          <h3 class="p-access__clinic-name">〇〇整骨院</h3>
+          <p class="p-access__address">〒569-XXXX<br />大阪府高槻市〇〇町1-2-3 〇〇ビル1F</p>
+          <p class="p-access__tel">TEL: 072-XXX-XXXX</p>
+
+          <div class="p-access__table-wrapper">
+            <table class="p-access__table">
+              <thead>
+                <tr>
+                  <th>診療時間</th>
+                  <th>月</th>
+                  <th>火</th>
+                  <th>水</th>
+                  <th>木</th>
+                  <th>金</th>
+                  <th>土</th>
+                  <th>日・祝</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>09:00 〜 12:30</td>
+                  <td>〇</td>
+                  <td>〇</td>
+                  <td>〇</td>
+                  <td>休</td>
+                  <td>〇</td>
+                  <td>▲</td>
+                  <td>休</td>
+                </tr>
+                <tr>
+                  <td>15:00 〜 20:00</td>
+                  <td>〇</td>
+                  <td>〇</td>
+                  <td>〇</td>
+                  <td>休</td>
+                  <td>〇</td>
+                  <td>休</td>
+                  <td>休</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="p-access__table-note">※土曜日の午前は 09:00〜13:00 まで診療 / 木曜・日曜日・祝日は休診</p>
+        </div>
+
+        <div class="p-access__map">
+          <div class="p-access__iframe-wrapper">
+            <div class="p-access__dummy-map">
+              <span>Google Map 埋め込みエリア</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  :root {
+    --bp-tablet: 768px;
+    --bp-pc: 1025px;
+    --color-primary: #008080;
+    --color-text: #333;
+    --color-border: #e0e0e0;
+    --color-bg-light: #f9fbfb;
+  }
+
+  .p-access {
+    padding-block: 60px;
+    background-color: var(--color-bg-light);
+  }
+
+  .p-access__inner {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .p-access__header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .p-access__label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .p-access__title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0;
+    position: relative;
+    padding-bottom: 16px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background-color: var(--color-primary);
+      border-radius: 999px;
+    }
+  }
+
+  .p-access__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .p-access__clinic-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    color: var(--color-text);
+  }
+
+  .p-access__address {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+    color: #555;
+  }
+
+  .p-access__tel {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0 0 24px 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* 診療時間テーブル */
+  .p-access__table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background-color: #fff;
+  }
+
+  .p-access__table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.9rem;
+
+    & th, & td {
+      padding: 12px 8px;
+      border: 1px solid var(--color-border);
+    }
+
+    & th {
+      background-color: color-mix(in srgb, var(--color-primary) 8%, #fff);
+      color: var(--color-text);
+      font-weight: 700;
+    }
+
+    & td:first-child {
+      font-weight: 600;
+      background-color: #fbfbfb;
+      width: 140px;
+    }
+  }
+
+  .p-access__table-note {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+  }
+
+  /* マップエリア */
+  .p-access__iframe-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 5%);
+    border: 1px solid var(--color-border);
+  }
+
+  .p-access__dummy-map {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    background-color: #e5e3df;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* =================================================================
+     PCサイズ（1025px以上）の解除・レイアウト調整
+     ================================================================= */
+  @media (min-width: 1025px) {
+    .p-access {
+      padding-block: 80px;
+    }
+
+    .p-access__header {
+      margin-bottom: 56px;
+    }
+
+    .p-access__title {
+      font-size: 2rem;
+    }
+
+    .p-access__grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+    }
+
+    .p-access__dummy-map {
+      height: 100%;
+    }
+  }
+</style>

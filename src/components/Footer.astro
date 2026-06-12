@@ -1,0 +1,107 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="l-footer">
+  <div class="l-footer__inner">
+    <div class="l-footer__info">
+      <p class="l-footer__logo">〇〇整骨院</p>
+      <p class="l-footer__address">
+        〒569-xxxx<br />
+        大阪府高槻市〇〇町1-2-3<br />
+        TEL: 072-xxx-xxxx
+      </p>
+    </div>
+
+    <div class="l-footer__hours">
+      <p class="l-footer__caption">【受付時間】</p>
+      <p class="l-footer__text">
+        午前 9:00〜12:30 / 午後 15:30〜20:00<br />
+        ※土曜午後は15:00〜18:00まで<br />
+        【休診日】水曜午後・日曜・祝日
+      </p>
+    </div>
+
+    <div class="l-footer__links">
+      <ul class="l-footer__menu">
+        <li><a href="/about">当院について</a></li>
+        <li><a href="/menu">施術内容・料金</a></li>
+        <li><a href="/info">院内情報・アクセス</a></li>
+        <li><a href="/contact">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="l-footer__copyright">
+    <small>&copy; {currentYear} 〇〇整骨院 All Rights Reserved.</small>
+  </div>
+</footer>
+
+<style>
+  /* -----------------------------------------------------------------
+      Footer Styles (修正版: ネスティング排除)
+  ----------------------------------------------------------------- */
+  .l-footer {
+    background-color: #f8f9fa;
+    color: #444;
+    padding-block: 60px 20px;
+    margin-top: auto;
+  }
+
+  .l-footer__inner {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .l-footer__logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #008080;
+    margin-bottom: 15px;
+  }
+
+  .l-footer__address { font-style: normal; line-height: 1.6; font-size: 0.9rem; }
+  .l-footer__caption { font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
+  .l-footer__text { font-size: 0.9rem; line-height: 1.6; }
+
+  .l-footer__menu { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  
+  /* ネスティングをやめて明示的に指定 */
+  .l-footer__menu li a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+  }
+  .l-footer__menu li a:hover {
+    color: #008080;
+    text-decoration: underline;
+  }
+
+  .l-footer__copyright {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  /* ──────── レスポンシブ調整 ──────── */
+  @media (min-width: 768px) {
+    .l-footer__inner { grid-template-columns: repeat(2, 1fr); }
+    .l-footer__links { grid-column: span 2; }
+    .l-footer__menu { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1025px) {
+    .l-footer__inner { grid-template-columns: 2fr 2fr 1fr; gap: 60px; }
+    .l-footer__links { grid-column: span 1; }
+    .l-footer__menu { grid-template-columns: 1fr; }
+  }
+</style>

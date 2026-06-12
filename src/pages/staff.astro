@@ -1,0 +1,228 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const staffList = [
+  {
+    name: "山田 太郎",
+    kana: "やまだ たろう",
+    role: "院長 / 柔道整復師",
+    specialty: "骨盤矯正・慢性的な腰痛改善",
+    message: "地元の高槻市で皆様の健康をサポートします！どんな小さな不調でもお気軽にご相談ください。",
+    // 確実に表示されるプレースホルダー画像（縦横比や文字も指定可能）
+    imgUrl: "https://placehold.co/600x600/008080/ffffff?text=Yamada+(Director)"
+  },
+  {
+    name: "佐藤 美咲",
+    kana: "さとう み咲",
+    role: "副院長 / 鍼灸師",
+    specialty: "自律神経調整・美容鍼・頭痛ケア",
+    message: "女性特有のお悩みや、日々のストレスからくる不調など、心と体の両面からアプローチします。",
+    imgUrl: "https://placehold.co/600x600/008080/ffffff?text=Sato+(Staff)"
+  },
+  {
+    name: "鈴木 健太",
+    kana: "すずき けんた",
+    role: "施術スタッフ / 柔道整復師",
+    specialty: "スポーツ障害・猫背骨格矯正",
+    message: "学生時代のサッカー経験を活かし、スポーツによるケガの早期復帰やパフォーマンス向上を全力でサポートします！",
+    imgUrl: "https://placehold.co/600x600/008080/ffffff?text=Suzuki+(Staff)"
+  }
+];
+---
+
+<Layout title="スタッフ紹介">
+  <!-- =================================================================
+     下層共通：ページヘッダー
+     ================================================================= -->
+  <div class="p-page-header">
+    <div class="p-page-header__inner">
+      <h1 class="p-page-header__title">スタッフ紹介</h1>
+      <span class="p-page-header__en">STAFF</span>
+    </div>
+  </div>
+
+  <!-- =================================================================
+     メインコンテンツエリア
+     ================================================================= -->
+  <div class="l-staff">
+    <section class="p-staff-list">
+      <div class="p-staff-list__inner">
+        
+        <div class="p-staff-list__intro">
+          <p class="p-staff-list__intro-text">
+            当院では、全員が国家資格を保持したプロフェッショナルです。<br />
+            確かな技術と温かい笑顔で、あなたのお悩みにどこよりも深く寄り添います。
+          </p>
+        </div>
+
+        <div class="p-staff-list__grid">
+          {staffList.map((staff) => (
+            <div class="p-staff-card">
+              <div class="p-staff-card__img">
+                <img src={staff.imgUrl} alt={staff.name} loading="lazy" />
+              </div>
+              <div class="p-staff-card__body">
+                <span class="p-staff-card__role">{staff.role}</span>
+                <h2 class="p-staff-card__name">
+                  {staff.name} <span class="p-staff-card__kana">（{staff.kana}）</span>
+                </h2>
+                <dl class="p-staff-card__info">
+                  <dt>得意な施術</dt>
+                  <dd>{staff.specialty}</dd>
+                </dl>
+                <p class="p-staff-card__message">{staff.message}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* -----------------------------------------------------------------
+     スタッフ一覧セクション
+  ----------------------------------------------------------------- */
+  .p-staff-list {
+    padding-block: 60px;
+    background-color: #fff;
+  }
+
+  .p-staff-list__inner {
+    max-width: 1100px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .p-staff-list__intro {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .p-staff-list__intro-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+  }
+
+  .p-staff-list__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* スタッフカード */
+  .p-staff-card {
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 5%);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p-staff-card__img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    overflow: hidden;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .p-staff-card__body {
+    padding: 24px;
+  }
+
+  .p-staff-card__role {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, #fff);
+    padding: 4px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .p-staff-card__name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .p-staff-card__kana {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #666;
+    margin-left: 4px;
+  }
+
+  .p-staff-card__info {
+    margin: 0 0 16px 0;
+    border-left: 3px solid var(--color-primary);
+    padding-left: 12px;
+
+    & dt {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 2px;
+    }
+
+    & dd {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin: 0;
+    }
+  }
+
+  .p-staff-card__message {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+  }
+
+  /* =================================================================
+     PCサイズ（1025px以上）の解除・レイアウト調整
+     ================================================================= */
+  @media (min-width: 1025px) {
+    .p-staff-list {
+      padding-block: 80px;
+    }
+
+    .p-staff-list__intro {
+      margin-bottom: 64px;
+    }
+
+    .p-staff-list__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .p-staff-card {
+      /* PCでは縦長のすっきりしたカード型にする */
+    }
+
+    .p-staff-card__img {
+      aspect-ratio: 1 / 1; /* 正方形にして引き締める */
+    }
+
+    .p-staff-card__body {
+      padding: 32px 24px;
+    }
+  }
+</style>

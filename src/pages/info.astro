@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="院内情報 | 〇〇整骨院">
+  <div class="p-page-header">
+    <div class="p-page-header__inner">
+      <h1 class="p-page-header__title">院内情報</h1>
+      <span class="p-page-header__en">CLINIC INFO</span>
+    </div>
+  </div>
+
+  <div class="l-info-page">
+    <div class="p-info-page__inner">
+      
+      <section class="p-info-section">
+        <h2 class="p-info-section__title">当院について</h2>
+        <p class="p-info-section__text">
+          〇〇整骨院は、地域の皆様の健康をサポートする整骨院です。<br>
+          清潔な院内環境と、痛みの根本から改善する施術を心がけております。
+        </p>
+      </section>
+
+      <section class="p-info-section">
+        <h2 class="p-info-section__title">診療時間</h2>
+        <div class="p-info-table">
+          <div class="p-info-table__row">
+            <span class="p-info-table__label">月・火・木・金</span>
+            <span class="p-info-table__value">9:00 - 19:00</span>
+          </div>
+          <div class="p-info-table__row">
+            <span class="p-info-table__label">水・土</span>
+            <span class="p-info-table__value">9:00 - 13:00</span>
+          </div>
+          <div class="p-info-table__row">
+            <span class="p-info-table__label">定休日</span>
+            <span class="p-info-table__value">日曜・祝日</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="p-info-section">
+        <h2 class="p-info-section__title">アクセス</h2>
+        <p class="p-info-section__text">
+          〒569-xxxx 大阪府高槻市〇〇町1-2-3<br>
+          最寄り駅から徒歩5分。駐車場も完備しております。
+        </p>
+      </section>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .l-info-page { padding-block: 60px; background-color: #fff; }
+  .p-info-page__inner {max-width: 1100px;margin-inline: auto;padding-inline: 20px;}
+  
+  .p-info-section { margin-bottom: 50px; }
+  .p-info-section__title { font-size: 1.4rem; font-weight: 800; color: #333; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #008080; }
+  .p-info-section__text { line-height: 1.8; color: #444; }
+
+  .p-info-table { border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; }
+  .p-info-table__row { display: flex; padding: 15px; border-bottom: 1px solid #e0e0e0; }
+  .p-info-table__row:last-child { border-bottom: none; }
+  .p-info-table__label { font-weight: 700; color: #008080; width: 40%; }
+  .p-info-table__value { width: 60%; }
+</style>

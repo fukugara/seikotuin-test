@@ -1,0 +1,176 @@
+---
+const features = [
+  {
+    number: "01",
+    title: "徹底したカウンセリング",
+    description: "表面的な痛みの緩和だけでなく、最新の姿勢分析を用いて一人ひとりの体のゆがみや根本的な原因を突き止めます。"
+  },
+  {
+    number: "02",
+    title: "国家資格保持者による施術",
+    description: "解剖学・生理学の知識を持つ経験豊富な柔道整復師が、痛みのないソフトで安全な骨盤矯正・筋肉調整を行います。"
+  },
+  {
+    number: "03",
+    title: "再発を防ぐアフターケア",
+    description: "施術の効果を長持ちさせるため、自宅で誰でも簡単にできるストレッチや、正しい姿勢を保つための生活習慣をご提案します。"
+  }
+];
+---
+
+<section class="p-concept">
+  <div class="p-concept__inner">
+    
+    <div class="p-concept__header">
+      <span class="p-concept__label">CONCEPT</span>
+      <h2 class="p-concept__title">当院が選ばれる3つの理由</h2>
+    </div>
+
+    <div class="p-concept__body">
+      <div class="p-concept__grid">
+        {features.map((item) => (
+          <div class="p-concept__card">
+            <div class="p-concept__card-head">
+              <span class="p-concept__card-number">{item.number}</span>
+              <h3 class="p-concept__card-title">{item.title}</h3>
+            </div>
+            <p class="p-concept__card-text">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  :root {
+    --bp-tablet: 768px;
+    --bp-pc: 1025px;
+    --color-primary: #008080;
+    --color-text: #333;
+    --color-bg-light: #f9fbfb;
+  }
+
+  .p-concept {
+    padding-block: 60px;
+    background-color: var(--color-bg-light);
+  }
+
+  .p-concept__inner {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .p-concept__header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .p-concept__label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .p-concept__title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin: 0;
+    position: relative;
+    padding-bottom: 16px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background-color: var(--color-primary);
+      border-radius: 999px;
+    }
+  }
+
+  .p-concept__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .p-concept__card {
+    background-color: #fff;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgb(0 128 128 / 4%);
+    border: 1px solid rgb(0 128 128 / 5%);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgb(0 128 128 / 8%);
+    }
+  }
+
+  .p-concept__card-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .p-concept__card-number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1;
+    opacity: 0.8;
+  }
+
+  .p-concept__card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .p-concept__card-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+  }
+
+  /* =================================================================
+     PCサイズ（1025px以上）の解除・レイアウト調整
+     ================================================================= */
+  @media (min-width: 1025px) {
+    .p-concept {
+      padding-block: 80px;
+    }
+
+    .p-concept__header {
+      margin-bottom: 56px;
+    }
+
+    .p-concept__title {
+      font-size: 2rem;
+    }
+
+    .p-concept__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .p-concept__card {
+      padding: 40px 32px;
+    }
+  }
+</style>

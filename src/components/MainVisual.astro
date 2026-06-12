@@ -1,0 +1,191 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  catchphrase: string;
+}
+
+const { title, subtitle, catchphrase } = Astro.props;
+
+// 確実に見栄えがする院内ベッドスペースのダミー画像
+const bgImageUrl = "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1600&auto=format&fit=crop";
+---
+
+<div class="p-mv" style={`background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url(${bgImageUrl});`}>
+  <div class="p-mv__inner">
+    <div class="p-mv__content">
+      <span class="p-mv__subtitle">{subtitle}</span>
+      <h1 class="p-mv__title">{title}</h1>
+      <p class="p-mv__text">{catchphrase}</p>
+      <div class="p-mv__actions">
+        <a href="/contact" class="c-btn c-btn--primary">
+          <span>WEBから予約・相談する</span>
+          <i class="c-btn__arrow"></i>
+        </a>
+        <a href="/menu" class="c-btn c-btn--secondary">
+          <span>施術メニューを見る</span>
+          <i class="c-btn__arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  :root {
+    --bp-tablet: 768px;
+    --bp-pc: 1025px;
+    --color-primary: #008080;
+    --color-text: #333;
+  }
+
+  /* -----------------------------------------------------------------
+     メインビジュアル全体レイアウト
+  ----------------------------------------------------------------- */
+  .p-mv {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-block: 60px 80px;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+  }
+
+  .p-mv__inner {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+    width: 100%;
+  }
+
+  .p-mv__content {
+    max-width: 600px;
+  }
+
+  .p-mv__subtitle {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, #fff);
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .p-mv__title {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.4;
+    color: var(--color-text);
+    margin: 0 0 20px 0;
+    letter-spacing: 0.03em;
+  }
+
+  .p-mv__text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #555;
+    margin: 0 0 36px 0;
+  }
+
+  .p-mv__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* -----------------------------------------------------------------
+     共通ボタンパーツ（is:global 内で安全に定義）
+  ----------------------------------------------------------------- */
+  .c-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 36px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                background-color 0.3s ease,
+                color 0.3s ease;
+  }
+
+  /* WEB予約ボタン（メインカラー） */
+  .c-btn--primary {
+    color: #fff !important;
+    background-color: var(--color-primary) !important;
+    box-shadow: 0 8px 24px rgb(0 128 128 / 25%) !important;
+    border: none !important;
+  }
+
+  .c-btn--primary:hover {
+    background-color: color-mix(in srgb, var(--color-primary) 85%, black) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgb(0 128 128 / 40%) !important;
+  }
+
+  /* メニューを見るボタン（ホワイトアウトライン） */
+  .c-btn--secondary {
+    color: var(--color-primary) !important;
+    background-color: #fff !important;
+    border: 2px solid var(--color-primary) !important;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 6%) !important;
+  }
+
+  .c-btn--secondary:hover {
+    background-color: var(--color-primary) !important;
+    color: #fff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgb(0 128 128 / 20%) !important;
+  }
+
+  /* スタイリッシュな右向きCSS矢印 */
+  .c-btn__arrow {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg); /* 右向き（>の形）に修正 */
+    margin-left: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  /* ホバー時に矢印を少し右にスライドさせる挙動 */
+  .c-btn:hover .c-btn__arrow {
+    transform: translateX(5px) rotate(45deg);
+  }
+
+  /* -----------------------------------------------------------------
+     PCメディアクエリ
+  ----------------------------------------------------------------- */
+  @media (min-width: 1025px) {
+    .p-mv {
+      padding-block: 120px;
+      min-height: 620px;
+    }
+
+    .p-mv__title {
+      font-size: 3rem;
+    }
+
+    .p-mv__text {
+      font-size: 1.125rem;
+    }
+
+    .p-mv__actions {
+      flex-direction: row;
+      gap: 24px;
+    }
+
+    .c-btn {
+      min-width: 270px;
+    }
+  }
+</style>

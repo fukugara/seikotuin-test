@@ -1,0 +1,54 @@
+---
+// WordPressから最新3件を取得
+const res = await fetch('https://seikotsuin.fukuhara.work/wp-json/wp/v2/posts?per_page=3');
+const posts = await res.json();
+---
+
+<section class="p-news">
+  <div class="l-inner">
+    <h2>新着情報</h2>
+    <ul class="p-news__list">
+      {posts.map((post) => (
+        <li class="p-news__item">
+          <time class="p-news__date">{post.date.split('T')[0]}</time>
+          <a href={`/news/${post.slug}`} class="p-news__link" set:html={post.title.rendered} />
+        </li>
+      ))}
+    </ul>
+
+    <div class="p-news__footer">
+      <a href="/news" class="c-button-more">一覧を見る</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .p-news { padding: 40px 20px; }
+  .l-inner { max-width: 800px; margin: 0 auto; }
+  
+  .p-news__list { list-style: none; padding: 0; }
+  .p-news__item { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    padding: 15px 0; 
+    border-bottom: 1px solid #eee; 
+  }
+  .p-news__date { color: #888; font-size: 0.9rem; flex-shrink: 0; }
+  .p-news__link { color: #333; text-decoration: none; }
+  .p-news__link:hover { text-decoration: underline; }
+
+  /* ボタンのスタイル */
+  .p-news__footer { margin-top: 30px; text-align: center; }
+  .c-button-more { 
+    display: inline-block; 
+    padding: 10px 30px; 
+    background: #f4f4f4; 
+    color: #333; 
+    text-decoration: none; 
+    border: 1px solid #ddd;
+    border-radius: 5px; 
+    transition: background 0.3s;
+  }
+  .c-button-more:hover { background: #e0e0e0; }
+</style>

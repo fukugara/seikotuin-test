@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="ご予約・お問い合わせ">
+  <div class="l-page-header">
+    <div class="p-page-header__inner">
+      <h1 class="p-page-header__title">ご予約・お問い合わせ</h1>
+      <span class="p-page-header__en">CONTACT</span>
+    </div>
+  </div>
+
+  <div class="l-contact-page">
+    <div class="p-contact-inner">
+      <p class="p-contact-desc">
+        施術のご予約や症状のご相談など、お気軽にお問い合わせください。
+      </p>
+
+      <form id="js-contact-form" class="p-form">
+        
+        <div class="p-form__row">
+          <div class="p-form__label-wrapper">
+            <label class="p-form__label" for="name">お名前</label>
+            <span class="c-badge c-badge--required">必須</span>
+          </div>
+          <input class="c-input-text" type="text" id="name" name="name" placeholder="山田 太郎" required />
+        </div>
+
+        <div class="p-form__row">
+          <div class="p-form__label-wrapper">
+            <label class="p-form__label" for="kana">フリガナ</label>
+            <span class="c-badge c-badge--required">必須</span>
+          </div>
+          <input class="c-input-text" type="text" id="kana" name="kana" placeholder="ヤマダ タロウ" required />
+        </div>
+
+        <div class="p-form__row">
+          <div class="p-form__label-wrapper">
+            <label class="p-form__label" for="tel">電話番号</label>
+            <span class="c-badge c-badge--required">必須</span>
+          </div>
+          <input class="c-input-text" type="tel" id="tel" name="tel" placeholder="090-XXXX-XXXX" required />
+        </div>
+
+        <div class="p-form__row">
+          <div class="p-form__label-wrapper">
+            <label class="p-form__label" for="email">メールアドレス</label>
+            <span class="c-badge c-badge--required">必須</span>
+          </div>
+          <input class="c-input-text" type="email" id="email" name="email" placeholder="example@clinic.com" required />
+        </div>
+
+        <div class="p-form__row">
+          <div class="p-form__label-wrapper">
+            <label class="p-form__label">お問い合わせ内容</label>
+            <span class="c-badge c-badge--required">必須</span>
+          </div>
+          <div class="p-form__radio-group">
+            <label class="c-radio"><input type="radio" name="purpose" value="予約" checked /><span>施術のご予約</span></label>
+            <label class="c-radio"><input type="radio" name="purpose" value="相談" /><span>症状に関するご相談</span></label>
+            <label class="c-radio"><input type="radio" name="purpose" value="その他" /><span>その他のお問い合わせ</span></label>
+          </div>
+        </div>
+
+        <div class="p-form__row">
+          <div class="p-form__label-wrapper">
+            <label class="p-form__label" for="message">詳しい内容</label>
+            <span class="c-badge c-badge--optional">任意</span>
+          </div>
+          <textarea class="c-textarea" id="message" name="message" rows="6" placeholder="ご予約希望日時や症状をご記入ください。"></textarea>
+        </div>
+
+        <div class="p-form__privacy">
+          <label class="c-checkbox">
+            <input type="checkbox" name="privacy" value="同意する" required />
+            <span class="c-checkbox__text"><a href="/privacy" target="_blank">プライバシーポリシー</a>に同意する</span>
+          </label>
+        </div>
+
+        <div class="p-form__actions">
+          <button class="c-btn-submit" type="submit">上記の内容で送信する</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const form = document.getElementById('js-contact-form') as HTMLFormElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // 画面遷移を強制ブロック
+    
+    const formData = new FormData(form);
+    
+    try {
+      // データの送信（SSGformのエンドポイントへPOST）
+      const response = await fetch('https://ssgform.com/s/BMt5fsNmZStQ', {
+        method: 'POST',
+        body: formData,
+      });
+
+      // 通信成功に関わらず、自作サンクスページへ飛ばす
+      window.location.href = '/contact/thanks';
+    } catch (error) {
+      console.error('送信エラー:', error);
+      alert('通信に失敗しました。時間をおいて再度お試しください。');
+    }
+  });
+</script>
+
+<style>
+  .l-contact-page { padding: 60px 20px; }
+  .p-contact-inner { max-width: 600px; margin: 0 auto; }
+  .p-contact-desc { text-align: center; margin-bottom: 40px; }
+  .p-form__row { margin-bottom: 24px; }
+  .p-form__label-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .p-form__label { font-weight: 700; font-size: 0.95rem; }
+  .c-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; }
+  .c-badge--required { background: #de3614; color: #fff; }
+  .c-badge--optional { background: #ccc; color: #fff; }
+  .c-input-text, .c-textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+  .p-form__radio-group { display: flex; flex-direction: column; gap: 8px; }
+  .c-radio { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .p-form__privacy { margin: 32px 0; text-align: center; }
+  .c-btn-submit { width: 100%; padding: 16px; background: var(--color-primary); color: #fff; border: none; border-radius: 999px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+  .c-btn-submit:hover { background: #006666; }
+  @media (min-width: 768px) { .p-form__radio-group { flex-direction: row; gap: 20px; } }
+</style>

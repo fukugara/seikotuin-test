@@ -1,0 +1,113 @@
+---
+// SSRモードを有効にする設定
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+
+// パスからslugを取得
+const { slug } = Astro.params;
+
+// WordPressから当該記事のデータを取得
+const apiUrl = `https://seikotsuin.fukuhara.work/wp-json/wp/v2/posts?slug=${slug}`;
+
+let post = null;
+try {
+  const res = await fetch(apiUrl);
+  if (res.ok) {
+    const data = await res.json();
+    post = data[0] || null;
+  }
+} catch (error) {
+  console.error('Fetch Error:', error);
+}
+
+// 記事がない場合は404へリダイレクト
+if (!post) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={post.title.rendered}>
+  <main class="l-main">
+    <article class="p-article">
+      <h1 class="p-article__title" set:html={post.title.rendered} />
+      
+      <div class="p-article__meta">
+        <time datetime={post.date}>{post.date.split('T')[0]}</time>
+      </div>
+      
+      <div class="p-article__content" set:html={post.content.rendered} />
+
+      <div class="p-article__footer">
+        <a href="/" class="c-button-back">← トップページに戻る</a>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  /* 全体レイアウト */
+  .p-article { 
+    max-width: 800px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+  }
+
+  .p-article__title { 
+    margin-bottom: 20px; 
+    font-size: 2rem; 
+    line-height: 1.4;
+  }
+
+  .p-article__meta { 
+    margin-bottom: 30px; 
+    color: #888; 
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+
+  /* 本文内のスタイル調整 */
+  .p-article__content :global(p) { 
+    margin-bottom: 1.5em; 
+    line-height: 1.8; 
+  }
+
+  .p-article__content :global(img) { 
+    max-width: 100%; 
+    height: auto; 
+    margin: 20px 0;
+    border-radius: 8px;
+  }
+
+  .p-article__content :global(h2) { 
+    margin: 40px 0 20px; 
+    padding: 10px 0 10px 15px; 
+    border-left: 5px solid #333;
+    background: #f4f4f4;
+  }
+
+  .p-article__content :global(ul) { 
+    margin-bottom: 1.5em; 
+    padding-left: 25px; 
+  }
+
+  /* ボタンのスタイル */
+  .p-article__footer { 
+    margin-top: 50px; 
+    text-align: center; 
+  }
+  
+  .c-button-back { 
+    display: inline-block; 
+    padding: 12px 24px; 
+    background: #333; 
+    color: #fff; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    transition: background 0.3s;
+  }
+  
+  .c-button-back:hover { 
+    background: #555; 
+  }
+</style>

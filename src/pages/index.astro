@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MainVisual from '../components/MainVisual.astro';
+import NewsSection from '../components/NewsSection.astro';
+import ConceptSection from '../components/ConceptSection.astro';
+import MenuSection from '../components/MenuSection.astro';
+import AccessSection from '../components/AccessSection.astro';
+---
+
+<Layout title="トップページ">
+  <MainVisual 
+    title="痛みの根本原因から改善へ" 
+    subtitle="笑顔で動ける明日をサポート" 
+    catchphrase="高槻市の〇〇整骨院です。体のゆがみ・慢性的な肩こり・腰痛など、お気軽にご相談ください。"
+  />
+  
+  <NewsSection />
+
+  <ConceptSection />
+
+  <MenuSection />
+
+  <AccessSection />
+</Layout>

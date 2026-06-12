@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const detailedMenus = [
+  {
+    title: "骨盤・骨格矯正コース",
+    price: "¥5,500",
+    time: "約45分",
+    summary: "体の土台となる骨盤・背骨のゆがみを根本から整える当院1番人気のコースです。",
+    features: ["バキバキしないソフトな施術", "姿勢分析・アフターカウンセリング込み", "猫背・巻き肩の改善にも対応"],
+    target: "慢性的な腰痛・肩こり、姿勢の悪さ、産後の骨盤の開きが気になる方",
+    imgUrl: "https://placehold.co/600x400/008080/ffffff?text=Pelvic+Correction"
+  },
+  {
+    title: "筋肉・筋膜調整コース",
+    price: "¥4,400",
+    time: "約30分",
+    summary: "深層にあるトリガーポイント（コリの引き金）を的確にほぐし、血液循環を促進します。",
+    features: ["丁寧な手技（マッサージ）中心", "ガチガチに固まった筋肉の緩和", "翌朝のスッキリ感が違う"],
+    target: "日々の疲労が抜けない方、特定の筋肉がピンポイントで痛む・張る方",
+    imgUrl: "https://placehold.co/600x400/008080/ffffff?text=Fascia+Adjustment"
+  },
+  {
+    title: "交通事故・むち打ち施術",
+    price: "¥0",
+    time: "窓口負担なし",
+    summary: "自賠責保険が適用されるため、自己負担金は一切かからずに専門施術を受けられます。",
+    features: ["自賠責保険適用で窓口負担0円", "提携弁護士への相談サポートあり", "他の整形外科からの転院も可能"],
+    target: "交通事故によるむち打ち、手足のしびれ、事故後の頭痛・めまいに悩む方",
+    imgUrl: "https://placehold.co/600x400/008080/ffffff?text=Traffic+Accident"
+  }
+];
+
+---
+
+<Layout title="施術メニュー・料金">
+  <div class="p-page-header">
+    <div class="p-page-header__inner">
+      <h1 class="p-page-header__title">施術メニュー・料金</h1>
+      <span class="p-page-header__en">MENU & PRICE</span>
+    </div>
+  </div>
+
+  <div class="l-menu-page">
+    <div class="p-menu-page__inner">
+      
+      <div class="p-menu-detail-list">
+        {detailedMenus.map((menu) => (
+          <section class="p-menu-detail-item">
+            <div class="p-menu-detail-item__grid">
+              
+              <div class="p-menu-detail-item__img">
+                <img src={menu.imgUrl} alt={menu.title} loading="lazy" />
+              </div>
+              
+              <div class="p-menu-detail-item__body">
+                <h2 class="p-menu-detail-item__title">{menu.title}</h2>
+                
+                <div class="p-menu-detail-item__price-box">
+                  <span class="p-menu-detail-item__price">{menu.price}</span>
+                  <span class="p-menu-detail-item__time">（{menu.time}）</span>
+                </div>
+                
+                <p class="p-menu-detail-item__summary">{menu.summary}</p>
+                
+                <div class="p-menu-detail-item__info">
+                  <div class="p-menu-detail-item__info-row">
+                    <span class="p-menu-detail-item__info-label">こんな方に：</span>
+                    <span class="p-menu-detail-item__info-text">{menu.target}</span>
+                  </div>
+                </div>
+
+                <ul class="p-menu-detail-item__features">
+                  {menu.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div class="p-menu-page__note">
+        <h3 class="p-menu-page__note-title">保険診療の適用について</h3>
+        <p class="p-menu-page__note-text">
+          骨折・脱臼・捻挫・打撲・挫傷（肉離れなど）といった、日常生活やスポーツにおける「原因のはっきりした急性・亜急性のケガ」に対しては健康保険の適用が可能です。単なる肩こりや慢性腰痛に対する施術は自費診療（上記の骨盤矯正など）となります。詳しくはお気軽にご相談ください。
+        </p>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .l-menu-page { padding-block: 60px; background-color: #fff; }
+  .p-menu-page__inner { max-width: 1000px; margin-inline: auto; padding-inline: 20px; }
+
+  .p-menu-detail-list { display: flex; flex-direction: column; gap: 48px; margin-bottom: 56px; }
+
+  .p-menu-detail-item {
+    background-color: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 3%);
+  }
+
+  .p-menu-detail-item__grid { display: grid; grid-template-columns: 1fr; }
+
+  .p-menu-detail-item__img {
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    overflow: hidden;
+    & img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  }
+
+  .p-menu-detail-item__body { padding: 24px; }
+  .p-menu-detail-item__title { font-size: 1.4rem; font-weight: 800; color: var(--color-text); margin: 0 0 12px 0; }
+  .p-menu-detail-item__price-box { display: flex; align-items: baseline; margin-bottom: 16px; border-bottom: 1px dashed var(--color-border); padding-bottom: 12px; }
+  .p-menu-detail-item__price { font-size: 1.65rem; font-weight: 800; color: var(--color-primary); font-family: 'Helvetica Neue', Arial, sans-serif; }
+  .p-menu-detail-item__time { font-size: 0.9rem; color: #666; font-weight: 600; }
+  .p-menu-detail-item__summary { font-size: 0.95rem; line-height: 1.6; color: #444; margin: 0 0 16px 0; }
+  .p-menu-detail-item__info { background-color: var(--color-bg-light); padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; }
+  .p-menu-detail-item__info-row { font-size: 0.9rem; line-height: 1.5; }
+  .p-menu-detail-item__info-label { font-weight: 700; color: var(--color-primary); }
+  .p-menu-detail-item__info-text { color: var(--color-text); font-weight: 600; }
+  .p-menu-detail-item__features { margin: 0; padding-left: 20px; font-size: 0.9rem; color: #555; & li { margin-bottom: 6px; &:last-child { margin-bottom: 0; } } }
+
+  .p-menu-page__note { background-color: var(--color-bg-light); border: 1px solid var(--color-border); padding: 24px; border-radius: 12px; }
+  .p-menu-page__note-title { font-size: 1.1rem; font-weight: 700; color: var(--color-text); margin: 0 0 12px 0; }
+  .p-menu-page__note-text { font-size: 0.9rem; line-height: 1.7; color: #666; margin: 0; }
+
+  @media (min-width: 1025px) {
+    .l-menu-page { padding-block: 80px; }
+
+    .p-menu-detail-item__grid {
+      grid-template-columns: 400px 1fr; /* 左カラムを固定幅にすると安定します */
+    }
+
+    .p-menu-detail-item__img {
+      aspect-ratio: auto; /* PCでは親の高さに合わせる */
+      height: 100%;
+    }
+
+    .p-menu-detail-item__body { padding: 32px; }
+  }
+</style>
